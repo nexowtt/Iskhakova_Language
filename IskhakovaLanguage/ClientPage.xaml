@@ -1,0 +1,110 @@
+﻿<Page x:Class="IskhakovaLanguage.ClientPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IskhakovaLanguage"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800" FontFamily="Comic Sans MS"
+      Title="ClientPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Поиск" FontSize="20" Width="70" Height="25"></TextBlock>
+                <TextBox Name="search" Margin="5" FontSize="20" Width="150" Height="25" TextChanged="search_TextChanged"></TextBox>
+            </StackPanel>
+            <StackPanel  Orientation="Horizontal">
+                <TextBlock Text="Пол" FontSize="20" Width="50" Height="25"></TextBlock>
+                <ComboBox Name="Pol" Width="85" Height="25" SelectionChanged="Pol_SelectionChanged">
+                    <TextBlock>Все</TextBlock>
+                    <TextBlock>Мужской</TextBlock>
+                    <TextBlock>Женский</TextBlock>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel  Orientation="Horizontal">
+                <TextBlock Text="Сортировка" FontSize="20" Width="125" Height="25"></TextBlock>
+                <ComboBox Name="Sort" Width="220" Height="25" SelectionChanged="Sort_SelectionChanged">
+                    <TextBlock>Нет</TextBlock>
+                    <TextBlock>По фамилии от А до Я</TextBlock>
+                    <TextBlock>По дате последнего посещения</TextBlock>
+                    <TextBlock>По количеству посещений</TextBlock>
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+        
+                    <ListView Name="ClientlistView" Grid.Row="1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"></RowDefinition>
+                                        <RowDefinition Height="auto"></RowDefinition>
+                                        <RowDefinition Height="auto"></RowDefinition>
+                                        <RowDefinition Height="auto"></RowDefinition>
+                                        <RowDefinition Height="auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="75"></ColumnDefinition>
+                                        <ColumnDefinition Width="400"></ColumnDefinition>
+                                        <ColumnDefinition Width="200"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Grid.Column="0" Grid.RowSpan="5">
+                                        <Image.Source>
+                                            <Binding Path="PhotoPath"></Binding>
+                                        </Image.Source>
+                                    </Image>
+                                    <WrapPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                                        <TextBlock Text="{Binding ID, StringFormat= ID: {0} }" ></TextBlock>
+                                        <TextBlock Text="{Binding FIO }"></TextBlock>
+                                    </WrapPanel>
+                                    <WrapPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                                        <TextBlock Text="{Binding gend, StringFormat= Пол: {0} }" ></TextBlock>
+                                        <TextBlock Text="{Binding birthstring, StringFormat=  Дата рождения {0}}"></TextBlock>
+                                    </WrapPanel>
+                                    <WrapPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                                        <TextBlock Text="{Binding Phone, StringFormat= Телефон: {0} }" ></TextBlock>
+                                        <TextBlock Text="{Binding Email, StringFormat=  Email:  {0} }"></TextBlock>
+                                    </WrapPanel>
+                                    <WrapPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+                                        <TextBlock Text="{Binding dataregistration, StringFormat= Дата регистрации: {0} }" ></TextBlock>
+                                    </WrapPanel>
+                                    <WrapPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
+                                        <TextBlock Text="{Binding last, StringFormat= Последнее посещение: {0} }" ></TextBlock>
+                                        <TextBlock Text="{Binding VisitCount, StringFormat=  Количество посещений:  {0} }"></TextBlock>
+                                    </WrapPanel>
+                                    <Button  Grid.Row="4" HorizontalAlignment="Center" Grid.Column="2" Name="Delete" Content="Удалить" Click="Delete_Click"></Button>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" >
+            <TextBlock Name="TBCount" FontSize="20" ></TextBlock>
+            <TextBlock Name="TBAllRecords" FontSize="20" ></TextBlock>
+            <ComboBox Name="PagesComboBox" SelectionChanged="PagesComboBox_SelectionChanged" FontSize="20" Width="80" Text="Выводить по ">
+                <TextBlock>10</TextBlock>
+                <TextBlock>50</TextBlock>
+                <TextBlock>200</TextBlock>
+                <TextBlock>Все</TextBlock>
+
+            </ComboBox>
+            <Button Name="LeftDirButton" Content="&lt;" Width="20"  Visibility="Visible" Click="LeftDirButton_Click"></Button>
+            <ListBox FontSize="20" Name="PageListBox" MouseUp="PageListBox_MouseUp" Visibility="Visible">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+            <Button Name="RightDirButton" Visibility="Visible" Content="&gt;" Width="20" Click="RightDirButton_Click"></Button>
+        </StackPanel>
+    </Grid>
+</Page>
