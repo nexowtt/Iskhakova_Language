@@ -26,7 +26,6 @@ namespace IskhakovaLanguage
         int CurrentPage = 0;
         List<Client> CurrentPageList = new List<Client>();
         List<Client> TableList;
-        int curcl;
         public ClientPage()
         {
             InitializeComponent();
@@ -35,7 +34,6 @@ namespace IskhakovaLanguage
             PagesComboBox.SelectedIndex = 0;
             Pol.SelectedIndex = 0;
             Sort.SelectedIndex = 0;
-            curcl = Client.Count;
             UpdateClient();
         }
 
@@ -164,7 +162,7 @@ namespace IskhakovaLanguage
 
                     min = CurrentPage * 10 + 10 < CountRecords ? CurrentPage * 10 + 10 : CountRecords;
                     TBCount.Text = CountRecords.ToString();
-                    TBAllRecords.Text = " из " + curcl.ToString();
+                    TBAllRecords.Text = " из " + ИсхаковаLanguageEntities.GetContext().Client.ToList().Count().ToString();
 
                     ClientlistView.ItemsSource = CurrentPageList;
                     ClientlistView.Items.Refresh();
@@ -243,7 +241,7 @@ namespace IskhakovaLanguage
 
                     min = CurrentPage * 50 + 50 < CountRecords ? CurrentPage * 50 + 50 : CountRecords;
                     TBCount.Text = CountRecords.ToString();
-                    TBAllRecords.Text = " из " + curcl.ToString();
+                    TBAllRecords.Text = " из " + ИсхаковаLanguageEntities.GetContext().Client.ToList().Count().ToString();
 
                     ClientlistView.ItemsSource = CurrentPageList;
                     ClientlistView.Items.Refresh();
@@ -323,7 +321,7 @@ namespace IskhakovaLanguage
 
                     min = CurrentPage * 200 + 200 < CountRecords ? CurrentPage * 200 + 200 : CountRecords;
                     TBCount.Text = CountRecords.ToString();
-                    TBAllRecords.Text = " из " + curcl.ToString();
+                    TBAllRecords.Text = " из " + ИсхаковаLanguageEntities.GetContext().Client.ToList().Count().ToString();
 
                     ClientlistView.ItemsSource = CurrentPageList;
                     ClientlistView.Items.Refresh();
@@ -403,7 +401,7 @@ namespace IskhakovaLanguage
 
                     min = CurrentPage * CountRecords + CountRecords < CountRecords ? CurrentPage * CountRecords + CountRecords : CountRecords;
                     TBCount.Text = CountRecords.ToString();
-                    TBAllRecords.Text = " из " + curcl.ToString();
+                    TBAllRecords.Text = " из " + ИсхаковаLanguageEntities.GetContext().Client.ToList().Count().ToString();
 
                     ClientlistView.ItemsSource = CurrentPageList;
                     ClientlistView.Items.Refresh();
@@ -469,6 +467,23 @@ namespace IskhakovaLanguage
 
         private void PagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            UpdateClient();
+        }
+  
+        private void ClientlistView_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            UpdateClient();
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new ClientForm(null));
+            UpdateClient();
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new ClientForm((sender as Button).DataContext as Client));
             UpdateClient();
         }
     }

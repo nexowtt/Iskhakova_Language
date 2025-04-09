@@ -23,3 +23,5 @@ C:\Users\Залина\Desktop\Языковая школа\IskhakovaLanguage\Iskh
 C:\Users\Залина\Desktop\Языковая школа\IskhakovaLanguage\IskhakovaLanguage\obj\Debug\App.baml
 C:\Users\Залина\Desktop\Языковая школа\IskhakovaLanguage\IskhakovaLanguage\obj\Debug\ClientPage.baml
 C:\Users\Залина\Desktop\Языковая школа\IskhakovaLanguage\IskhakovaLanguage\obj\Debug\IskhakovaLanguage.csproj.CopyComplete
+C:\Users\Залина\Desktop\Языковая школа\IskhakovaLanguage\IskhakovaLanguage\obj\Debug\ClientForm.g.cs
+C:\Users\Залина\Desktop\Языковая школа\IskhakovaLanguage\IskhakovaLanguage\obj\Debug\ClientForm.baml

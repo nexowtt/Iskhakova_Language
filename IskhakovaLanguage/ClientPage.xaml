@@ -37,10 +37,11 @@
                     <TextBlock>По дате последнего посещения</TextBlock>
                     <TextBlock>По количеству посещений</TextBlock>
                 </ComboBox>
+                <Button Name="Add" Content="Добавить" Click="Add_Click"></Button>
             </StackPanel>
         </StackPanel>
         
-                    <ListView Name="ClientlistView" Grid.Row="1">
+                    <ListView Name="ClientlistView" Grid.Row="1" IsVisibleChanged="ClientlistView_IsVisibleChanged">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -59,8 +60,14 @@
 
                                     <Image Grid.Column="0" Grid.RowSpan="5">
                                         <Image.Source>
-                                            <Binding Path="PhotoPath"></Binding>
-                                        </Image.Source>
+                                <Binding Path="PhotoPath">
+                                    <Binding.TargetNullValue>
+                                    <ImageSource>
+                                        /Клиенты/school_logo.png
+                                    </ImageSource>
+                                </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
                                     </Image>
                                     <WrapPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
                                         <TextBlock Text="{Binding ID, StringFormat= ID: {0} }" ></TextBlock>
@@ -81,8 +88,9 @@
                                         <TextBlock Text="{Binding last, StringFormat= Последнее посещение: {0} }" ></TextBlock>
                                         <TextBlock Text="{Binding VisitCount, StringFormat=  Количество посещений:  {0} }"></TextBlock>
                                     </WrapPanel>
-                                    <Button  Grid.Row="4" HorizontalAlignment="Center" Grid.Column="2" Name="Delete" Content="Удалить" Click="Delete_Click"></Button>
-                                </Grid>
+                        <Button  Grid.Row="3" HorizontalAlignment="Center" Grid.Column="2" Name="Delete" Content="Удалить" Click="Delete_Click"></Button>
+                        <Button  Grid.Row="4" HorizontalAlignment="Center" Grid.Column="2" Name="Edit" Content="Редактировать" Click="Edit_Click"></Button>
+                    </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
